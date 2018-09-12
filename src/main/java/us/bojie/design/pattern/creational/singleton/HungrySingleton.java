@@ -2,7 +2,7 @@ package us.bojie.design.pattern.creational.singleton;
 
 import java.io.Serializable;
 
-public class HungrySingleton implements Serializable {
+public class HungrySingleton implements Serializable, Cloneable {
     private final static HungrySingleton hungrySingleton;
 
     static {
@@ -22,5 +22,11 @@ public class HungrySingleton implements Serializable {
     // for serializable
     private Object readResolve() {
         return hungrySingleton;
+    }
+
+    // For cloning
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return getInstance();
     }
 }
